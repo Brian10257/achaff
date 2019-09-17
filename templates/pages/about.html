@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="py-5">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h1 class="display-3">About ACHAFF SA</h1>
+              <p class="lead text-capitalize">We are the best domain providers on the market</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Breadcrumb -->
+      <section class="mt-3">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'index' %}" style="color:rgb(29, 111, 136);">
+                  <i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item active" style="color:rgb(22, 91, 155);"> About</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+  {% if about %}
+    {% for about in about %}
+      <section id="about" class="about-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-capitalize" >
+              <h2 class="text-center"><u>{{about.title}}</u></h2>
+              <p class="lead text-capitalize">{{about.sub_title}}</p>
+              <hr>
+                <div class="about-area py-4">
+                  <div class="about-slides owl-carousel">
+                    <img src="{% static 'img/about-slide1.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside1.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide2.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside2.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide3.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside3.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide4.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside4.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide5.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside5.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide6.png' %}" alt="">
+                    <img src="{% static 'img/about-inside6.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide7.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside7.jpg' %}" alt="">
+                    <img src="{% static 'img/about-slide8.jpg' %}" alt="">
+                    <img src="{% static 'img/about-inside8.jpg' %}" alt="">
+                  </div>
+                </div>
+              <hr>
+              <br>
+              <div class="col-md-12">
+                <div class="row">
+                  <p>{{about.about1}}</p>
+                  <hr>
+                  <p>{{about.about2}}</p>
+                  <br>
+                  <h2 class="text-center">{{about.sub_title2}}</h2>
+                  <hr>
+                  <p>{{about.about3}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+            <div class="mvp text-capitalize">
+              {% if mvp_realtors %}
+                  {% for realtor in mvp_realtors %}
+                  <div class="mvp-card container col-md-8">
+                    <img class="mvp-card-img-top" src="{{realtor.photo.url}}" alt="Seller of the month">
+                    <div class="mvp-card-body">
+                      <h5 class="card-title" style="font-weight: 900"><u>Seller Of The Month</u></h5>
+                      <h6>Name: <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:black ">{{realtor.name}}</span></h6>
+                      <p class="card-text" style="font-weight: 700" >{{realtor.description}}
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    {% endfor %}  
+  {% endif %}  
+      <!-- Team -->
+      <section id="team" class="team-area py-5 text-capitalize">
+        <div class="container">
+          <h1 class="text-center" style="color:rgb(22, 91, 155);">our realtors</h1>
+          <br>
+          <div class="row text-center">
+            {% if realtors %}
+                {% for realtor in realtors %}
+                <div class="col-md-4">
+                    <img src="{{realtor.photo.url}} " alt="" class="rounded-circle mb-3" style="width: 300px; height:300px">
+                    <h4 style="font-weight: 900; color:rgb(22, 91, 155);">{{realtor.name}}</h4>
+                    <p style="color:rgb(158, 28, 54);" class="font-weight-bold">
+                      <i class="fas fa-award mb-3" style="color:gold"></i>&nbsp;Realtor</p>
+                    <p style="color:rgb(0, 0, 0)">
+                      <i class="fas fa-phone" style="color:#199908;"></i>&nbsp;{{realtor.phone}} </p>
+                    <p style="color:rgb(0, 0, 0)">
+                      <i class="fas fa-envelope" style="color:rgb(175, 147, 21);"></i>&nbsp;{{realtor.email}} </p>
+                      <hr>
+                  </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                  <p class="text-black text-center" style="font-weight: 900">No Realtors Available</p>
+                </div>
+            {% endif %}
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                {% if about.has_other_pages %}
+                <ul class="pagination">
+                  {% if about.has_previous %}
+                  <li class="page-item">
+                    <a href="?page={{about.previous_page_number}} " class="page-link">&laquo;</a>
+                  </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                      </li>
+                  {% endif %}
+                  {% for i in about.paginator.page_range %}
+                      {% if about.number == i %}
+                          <li class="page-item active">
+                            <a class="page-link">{{i}}</a>
+                          </li>
+                          {% else %}
+                          <li class="page-item">
+                            <a href="?page={{i}}" class="page-link">{{i}}</a>
+                          </li>
+                      {% endif %}
+                  {% endfor %}
+                {% if about.has_other_pages %}
+                <ul class="pagination">
+                  {% if about.has_next %}
+                  <li class="page-item">
+                    <a href="?page={{about.next_page_number}} " class="page-link">&raquo;</a>
+                  </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link">&raquo;</a>
+                      </li>
+                  {% endif %}
+                {% endif %}
+                </ul>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+      </section>
+{% endblock %}

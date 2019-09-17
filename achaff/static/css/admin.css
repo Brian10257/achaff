@@ -1,0 +1,112 @@
+#header{
+    height: 50px;
+    background: #699e07;
+    color:#699e07;
+}
+
+#branding h1{
+    color: rgb(22, 91, 155);
+    font-weight: 900;
+} 
+
+#content-related .module h2{
+    background:#699e07;
+    color:  rgb(22, 91, 155);
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre{
+    color: #12147e
+}
+
+a:link,
+a:visited {
+    color: rgb(22, 91, 155);
+}
+
+a.section:link, a.section:visited{
+    color: rgb(22, 91, 155);
+}
+
+div.breadcrumbs {
+    background: #737373;
+    color: #10284e;
+}
+
+td, th{
+    color: indigo;
+}
+
+#changelist #toolbar form input[type="submit"]:focus, #changelist #toolbar form input[type="submit"]:hover{
+    background: #808000;
+}
+
+.object-tools a:link, .object-tools a:visited{
+    background: #737373;
+    color: rgb(22, 91, 155);
+}
+
+div.breadcrumbs {
+    color: #333;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background:  #699e07;
+    color: rgb(22, 91, 155);
+}
+
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button {
+    background: #699e07;
+    color:rgb(22, 91, 155); 
+}
+
+.button.default, input[type="submit"].default, .submit-row input.default{
+    background: rgb(22, 91, 155);
+    color:#699e07;
+}
+
+.submit-row a.deletelink {
+    background:  #699e07;
+    color: rgb(22, 91, 155);
+}
+
+.form-row{
+    color: indigo;
+}
+
+#id_groups_filter{
+    background: #699e07;
+}
+
+#id_groups{
+    color:yellowgreen;
+}
+
+a.active.selector-chooseall, a.active.selector-clearall{
+    color: antiquewhite
+}
+
+#header a:link, #header a:visited{
+    color:  rgb(22, 91, 155);
+}
+
+.selector-available{
+    background: #699e07;
+    color: rgb(22, 91, 155);
+}
+
+.selector-chosen{
+    background: #699e07;
+    color: rgb(22, 91, 155);
+}
+
+a.active.selector-chooseall{
+    color:darkgreen;
+}
+
+a.active.selector-clearall{
+    color:darkgreen;
+}
+
+.selector-available h2, .selector-chosen h2{
+    background: #699e07;
+}

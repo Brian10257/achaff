@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block title %}Browse Properties {% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" style="color :#199908;">Browse Our Properties</h1>
+          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}" style="color:rgb(29, 111, 136);">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active" style="color:rgb(22, 91, 155);"> Browse Listings</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4 text-capitalize">
+    <div class="container">
+      <div class="row">
+        {% if listings %}
+            {% for listing in listings %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                  <img class="card-img-top" src="{{listing.photo_main.url}}" alt="">
+                  <div class="card-img-overlay">
+                    <h2>
+                      <span class="badge badge-secondary" style=" color:gold">${{listing.price | intcomma}} </span>
+                    </h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="listing-heading text-center">
+                      <h4 style="color: #699e07">{{listing.title}}</h4>
+                      <p>
+                        <i class="fas fa-map-marker" style="color:green"></i> {{listing.city}} {{listing.state}}, {{listing.zipcode}} </p>
+                    </div>
+                    <hr>
+                    <div class="row py-2">
+                      <div class="col-6">
+                        <i class="fas fa-th-large" style="color: olive"></i> Sqft: {{listing.sqft}} </div>
+                      <div class="col-6">
+                        <i class="fas fa-car" style="color: olive"></i> Garage: {{listing.garage}} </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col-6">
+                        <i class="fas fa-bed" style="color: olive"></i> Bedrooms: {{listing.bedrooms}} </div>
+                      <div class="col-6">
+                        <i class="fas fa-bath" style="color: olive"></i> Bathrooms: {{listing.bathrooms}} </div>
+                    </div>
+                    <hr>
+                    <div class="row py-2">
+                      <div class="col-12">
+                        <i class="fas fa-user" style="color: olive"></i> {{listing.realtor}} </div>
+                    </div>
+                    <div class="row pb-2">
+                      <div class="col-6">
+                        <i class="fas fa-clock" style="color: olive"></i>{{listing.list_date | timesince}} Ago</div>
+                    </div>
+                    <hr>
+                    <a href=" {% url 'listing' listing.id %} " class="btn btn-secondary btn-block">Details</a>
+                  </div>
+                </div>
+              </div>
+      
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+              <p>No Listings Available</p>
+            </div>
+        {% endif %}
+       
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          {% if listings.has_other_pages %}
+          <ul class="pagination">
+            {% if listings.has_previous %}
+            <li class="page-item">
+              <a href="?page={{listings.previous_page_number}} " class="page-link">&laquo;</a>
+            </li>
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for i in listings.paginator.page_range %}
+                {% if listings.number == i %}
+                    <li class="page-item active">
+                      <a class="page-link">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                      <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+          {% if listings.has_other_pages %}
+          <ul class="pagination">
+            {% if listings.has_next %}
+            <li class="page-item">
+              <a href="?page={{listings.next_page_number}} " class="page-link">&raquo;</a>
+            </li>
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&raquo;</a>
+                </li>
+            {% endif %}
+          {% endif %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

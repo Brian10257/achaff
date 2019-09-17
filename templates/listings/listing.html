@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} {{listing.title}} {% endblock %}
+
+{% block content %} 
+<section class="py-5 text-capitalize"> 
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4" style="color:#199908;">{{listing.title}}</h1>
+        <p class="lead">
+          <i class="fas fa-map-marker" style="color:green"></i> {{listing.city}} {{listing.state}} , {{listing.zipcode}} </p>
+      </div>
+    </div>
+  </div>
+</section>
+    
+      <!-- Breadcrumb -->
+      <section id="bc" class="mt-3 text-capitalize">
+        <div class="container">
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" style="color:rgb(22, 91, 155)">
+                <a href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="breadcrumb-item"  style="color:rgb(22, 91, 155)">
+                <a href="{% url 'listings' %} ">Listings</a>
+              </li>
+              <li class="breadcrumb-item active"  style="color:rgb(22, 91, 155)">{{listing.title}}</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+    
+      <!-- Listing -->
+      <section id="listing" class="py-4 text-capitalize" style="background-color:rgb(255, 255, 255);">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <!-- Home Main Image -->
+              <img src="{{listing.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
+              <!-- Thumbnails -->
+              <div class="row mb-5 thumbs" id="lightgallery">
+                  {% if listing.photo_1 %}
+                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_1.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                      <a href="#"><img src= {{listing.photo_1.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                    </div>
+                    {% endif %} 
+                    {% if listing.photo_2 %}
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_2.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                        <a href="#"><img src= {{listing.photo_2.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                      </div>
+                    {% endif %}
+                    {% if listing.photo_3 %}
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_3.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                        <a href="#"><img src= {{listing.photo_3.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                      </div>
+                    {% endif %}
+                    {% if listing.photo_4%}
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_4.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                        <a href="#"><img src= {{listing.photo_4.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                      </div>
+                    {% endif %}
+                    {% if listing.photo_5%}
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_5.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                        <a href="#"><img src= {{listing.photo_5.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                      </div>
+                    {% endif %}
+                    {% if listing.photo_6 %}
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"  data-src= {{listing.photo_6.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery1.name}}</h4><p class=' text-capitalize'> {{gallery1.description}} </p>">
+                        <a href="#"><img src= {{listing.photo_6.url}} style="width:200px; height:100px" alt="IMage" class="img-thumbnail"></a>
+                      </div>
+                    {% endif %}
+              </div>
+              <!-- Fields -->
+              <div class="row mb-5 fields">
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-money-bill-alt" style="color:olive"></i> <span> Asking Price:</span>
+                      <span class="float-right" style="color:gold">${{listing.price | intcomma}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-bed" style="color:olive;"></i> <span>Bedrooms:</span>
+                      <span class="float-right">{{listing.bedrooms}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-bath" style="color:olive;"></i> <span>Bathrooms:</span>
+                      <span class="float-right">{{listing.bathrooms}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-car" style="color:olive;"></i><span>Garage:</span> 
+                      <span class="float-right">{{listing.garage}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-th-large" style="color:olive;"></i> <span>Square Feet:</span>
+                      <span class="float-right">{{listing.sqft}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-square" style="color:olive;"></i> <span>Lot Size:</span>
+                      <span class="float-right">{{listing.lot_size}} Acres
+                      </span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-calendar" style="color:olive;"></i> <span>Listing Date:</span>
+                      <span class="float-right">{{listing.list_date}}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-bed" style="color:olive;"></i> <span>Realtor:</span>
+                      <span class="float-right">{{listing.realtor}}
+                      </span>
+                    </li>
+    
+    
+                  </ul>
+                </div>
+              </div>
+    
+              <!-- Description -->
+              <div class="row mb-5">
+                <div class="container">
+                        {{listing.description}}
+                </div>
+              </div>
+              <a href="{%url 'listings' %}" class="btn-secondary btn mb-4">Back To Listings</a>
+            </div>
+            <div class="col-md-3">
+              <div class="card mb-3">
+                <img class="card-img-top" src="{{listing.realtor.photo.url}}" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">Property Realtor</h5>
+                  <h6 style="color:gold; font-family:krinkes_decor_personal_useRg;">{{listing.realtor}}</h6>
+                    <span class="text-warning">Phone: <span style="color: black">{{listing.realtor.phone}}</span></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                  <p>{{listing.realtor.description}} </p>
+                </div>
+              </div> 
+              <button class="info-link btn-secondary btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Inquiry Modal -->
+      <div class="modal fade text-capitalize" id="inquiryModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" style="font-family:krinkes_decor_personal_useRg; color:#699e07">
+              <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{% url 'contact' %}" method="POST">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                {% else %}
+                    <input type="hidden" name="user_id" value="0">
+                {% endif %}
+                <input type="hidden" name="realtor_email" value="{{listing.realtor.email}}">
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+                <div class="form-group">
+                  <label for="property_name" class="col-form-label">Property:</label>
+                  <input type="text" name="listing" class="form-control" value="{{listing.title}}">
+                </div>
+                <div class="form-group">
+                  <label for="name" class="col-form-label">Name:</label>
+                  <input type="text" name="name" class="form-control" 
+                  {% if user.is_authenticated %} 
+                  value=" {{user.first_name}} {{user.last_name}} " 
+                  {% endif %} required>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-form-label">Email:</label>
+                  <input type="email" name="email" class="form-control" 
+                  {% if user.is_authenticated%} value=" {{user.email }} " 
+                  {% endif %} required> 
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="col-form-label">Phone:</label>
+                  <input type="text" name="phone" class="form-control"  >
+                </div>
+                <div class="form-group">
+                  <label for="message" class="col-form-label">Message:</label>
+                  <textarea name="message" class="form-control"></textarea>
+                </div>
+                <hr>
+                <input type="submit" value="Send" class="info-link btn btn-secondary">
+              </form> 
+            </div>
+          </div>
+        </div>
+      </div>
+    
+{% endblock %}

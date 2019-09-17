@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Consulting{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<section class="consult-area container">
+  <div class="col-md-12">
+    <h1 class="consulting-area text-center">Welcome To Our Consulting Page How Can We Help You.</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum hic distinctio, voluptas 
+    repudiandae vero enim! Laudantium fugiat explicabo tempore suscipit, 
+    recusandae odio, ducimus ut quasi nesciunt ratione blanditiis, necessitatibus mollitia.</p>
+  </div>
+  <br>
+  <div class="col-md-12">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam temporibus reiciendis 
+    laboriosam totam, corrupti voluptatum reprehenderit dolore? Voluptatem excepturi perspiciatis 
+    autem mollitia 
+    porro nulla delectus cupiditate voluptates praesentium, dolores dicta.
+    </p>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam temporibus reiciendis 
+    laboriosam totam, corrupti voluptatum reprehenderit dolore? Voluptatem excepturi perspiciatis 
+    autem mollitia 
+    porro nulla delectus cupiditate voluptates praesentium, dolores dicta.
+    </p>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam temporibus reiciendis 
+    laboriosam totam, corrupti voluptatum reprehenderit dolore? Voluptatem excepturi perspiciatis 
+    autem mollitia 
+    porro nulla delectus cupiditate voluptates praesentium, dolores dicta.
+    </p>
+  </div>
+  
+</section>
+<hr>
+<div class="modal-body container">
+  <form action="{% url 'consult' %}" method="POST">
+      {% csrf_token %}
+      {% if user.is_authenticated %}
+          <input type="hidden" name="user_id" value="{{user.id}}">
+      {% else %}
+          <input type="hidden" name="user_id" value="0">
+      {% endif %}
+      <div class="form-group">
+      </div>
+      <div class="form-group">
+      <input type="text" name="name" id="name" class="form-control"  placeholder="Name"
+      {% if user.is_authenticated %}
+      value=" {{user.first_name}} {{user.last_name}} " 
+      {% endif %} required>
+      </div>
+      <div class="form-group">
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+      {% if user.is_authenticated%} value=" {{user.email }} " 
+      {% endif %} required> 
+      </div>
+      <div class="form-group">
+      <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" >
+      </div>
+      <div class="form-group">
+      <textarea name="message" class="form-control" placeholder="Message"></textarea>
+      </div>
+      <hr>
+      <input type="submit" value="Send" class="info-link btn btn-secondary">
+  </form>
+</div>
+{% else %}
+  <div class="col-md-12">
+    <p class="text-black" style="font-size: 120px"><a href="{% url 'login' %}" style="color:brown">Login</a> <span>To View This Page</span></p>
+    <p class="text-black">Forgot Password? Click <a href="{% url 'password_reset' %}" style="color: #1f688a; font-weight:700">Here</a> To Reset Your Password</p>
+  </div>
+{% endif %}
+{% endblock %}
