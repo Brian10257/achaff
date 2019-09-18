@@ -197,7 +197,12 @@ img {
 
 #showcase {
   background-image: url(../img/achaff.png);
-  position: relative;
+  /* position: relative; */
+  background-size: 790px;
+  margin-top: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
   min-height: 650px;
   color: rgb(22, 91, 155);
   padding-top: 6rem; }
@@ -1444,7 +1449,6 @@ a {
   z-index: 9; }
   .swiper-button-prev:before,
   .swiper-container-rtl .swiper-button-next:before {
-    background: ;
     padding: 8px;
     content: "\e5c4";
     font-family: 'icomoon';
