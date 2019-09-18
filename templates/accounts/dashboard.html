@@ -3,6 +3,7 @@
 {% block title %}User Dashboard {% endblock %}
 
 {% block content %}
+{% include 'partials/_alerts.html' %}
 <section class="py-5"> 
         <div class="container">
           <div class="row text-center">
@@ -30,8 +31,6 @@
       </section>
       
       <!--Alerts-->
-      {% include 'partials/_alerts.html' %}
-    
       <section id="dashboard" class="py-4">
         <div class="container">
           <div class="row">
