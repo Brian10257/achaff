@@ -29,7 +29,7 @@ def contact(request):
         # Send Mail
         send_mail(
             'Property Listing Inquiry',
-            'There has been an inquiry for' + listing + '. Sign into admin panel for more info',
+            'There Has Been An Inquiry For Listing: ' + listing + ' .Contact The ACHAFF SA Administration For Details On This Inquiry',
             'ntschangb@gmail.com', 
             [realtor_email, 'ntschangb@gmail.com'],
             fail_silently=False
