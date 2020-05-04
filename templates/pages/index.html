@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load static %}
 {% load humanize %}
 
 {% block title %} Welcome{% endblock %}
@@ -76,7 +77,7 @@
         <div class="container">
           <h3 class="text-center mb-3" style="font-family:krinkes_decor_personal_useRg; color:#699e07;">Latest Listings</h3>
           <div class="row">
-            {% if listings  %}
+            {% if listings  %} 
                 {% for listing in listings %}
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card listing-preview">
